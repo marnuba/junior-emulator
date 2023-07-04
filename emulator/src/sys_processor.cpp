@@ -199,6 +199,14 @@ void CPUReset(void) {
 				if (toupper(p[0]) == 'M') loadAddress = PAGE_MONITOR << 13;
 				if (toupper(p[0]) == 'X') loadAddress = PAGE_SOURCE << 13;
 				if (toupper(p[0]) == 'S') loadAddress = PAGE_SPRITES << 13;
+			} else {
+				if (p[0] == '0' && toupper(p[1]) == 'X') {
+					char *e;
+					loadAddress = strtol(p, &e,0);
+					if (*e != '\0') {
+						exit(fprintf(stderr,"Bad argument %s\n",argumentList[i]));
+					}
+				}
 			}
 			if (loadAddress < 0) {
 				if (sscanf(p,"%x",&loadAddress) != 1) exit(fprintf(stderr,"Bad argument %s\n",argumentList[i]));

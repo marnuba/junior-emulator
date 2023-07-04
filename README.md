@@ -24,8 +24,13 @@ e.g. ./jr256 basic.rom@b
 
 The kernal simply initialises and jumps to $8040. So this line loads the BASIC rom to $8000 (there is a header from 8000-803F)
 
-It is possible to override the start address by having boot@1000 (say) in the line - which will cause it to jump to $1000. This address is in
-the 6502 space.
+The address can also be an absolute address in hexadecimal in 0x... notation.
+
+e.g. ./jr256 hello.bin@0x001000
+
+It is also possible to override the start address by having boot@1000 (say) in the line - which will cause it to jump to $1000. This address is in the 6502 space.
+
+e.g. ./jr256 hello.bin@0x001000 boot@1000
 
 To track calls and returns use the command line option 'track'
 
